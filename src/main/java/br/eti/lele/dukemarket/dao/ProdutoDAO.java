@@ -8,14 +8,27 @@ package br.eti.lele.dukemarket.dao;
  *
  * @author sesi2dib
  */
+
+import br.eti.lele.dukemarket.bean.Produto;
+     import connection.MySQLConnection;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class ProdutoDAO {
-     // 4.6.1 Strings DML (Data Manipulation Language)
+
+    // 4.6.1 Strings DML (Data Manipulation Language)
     private static final String SQL_INSERT = "INSERT INTO produto(codBarras, "
             + "descricao, qtd, valorCompra, valorVenda) "
             + "VALUES (?, ?, ?, ?, ?)";
 
     private static final String SQL_SELECT_ALL = "SELECT * FROM produto";
-    private static final String SQL_SELECT_ID = "SELECT * FROM produto "
+    private static final String SQL_SELECT_ID = "SELECT * FRO0,M produto "
             + "WHERE id = ?";
 
     private static final String SQL_UPDATE = "UPDATE produto SET codBarras = ?,"
@@ -44,11 +57,11 @@ public class ProdutoDAO {
             // Executa a query
             int auxRetorno = stmt.executeUpdate();
 
-            Logger.getLogger(ProdutosDAO.class.getName()).log(Level.INFO, null,
+            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.INFO, null,
                     "Inclusao: " + auxRetorno);
 
         } catch (SQLException sQLException) {
-            Logger.getLogger(ProdutosDAO.class.getName()).log(Level.SEVERE, null,
+            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null,
                     sQLException);
         } finally {
             // Encerra a conexão com o banco e o statement.
@@ -90,7 +103,7 @@ public class ProdutoDAO {
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(ProdutosDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             // Encerra a conexão com o banco, o statement e o resultset
             MySQLConnection.closeConnection(conn, stmt, rs);
@@ -128,7 +141,7 @@ public class ProdutoDAO {
             }
 
         } catch (SQLException sQLException) {
-            Logger.getLogger(ProdutosDAO.class.getName()).log(Level.SEVERE, null,
+            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null,
                     sQLException);
         } finally {
             // Encerra a conexão com o banco e o statement.
@@ -159,11 +172,11 @@ public class ProdutoDAO {
             // Executa a query
             int auxRetorno = stmt.executeUpdate();
 
-            Logger.getLogger(ProdutosDAO.class.getName()).log(Level.INFO, null,
+            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.INFO, null,
                     "Update: " + auxRetorno);
 
         } catch (SQLException sQLException) {
-            Logger.getLogger(ProdutosDAO.class.getName()).log(Level.SEVERE, null,
+            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null,
                     sQLException);
         } finally {
             // Encerra a conexão com o banco e o statement.
@@ -187,12 +200,15 @@ public class ProdutoDAO {
             // Executa a query
             int auxRetorno = stmt.executeUpdate();
 
-            Logger.getLogger(ProdutosDAO.class.getName()).log(Level.INFO, null,
+            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.INFO, null,
                     "Delete: " + auxRetorno);
 
         } catch (SQLException sQLException) {
-            Logger.getLogger(ProdutosDAO.class.getName()).log(Level.SEVERE, null,
+            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null,
                     sQLException);
         } finally {
             // Encerra a conexão com o banco e o statement.
             MySQLConnection.closeConnection(conn, stmt);
+        }
+    }
+}
